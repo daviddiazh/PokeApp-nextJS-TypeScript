@@ -1,10 +1,17 @@
 import { Spacer, Text, useTheme } from "@nextui-org/react"
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 
 
 export const Navbar = () => {
 
   const { theme } = useTheme();
+
+  const router = useRouter();
+
+  const onClick = () => {
+    router.push(`/`);
+  }
 
   return (
     <div style={{
@@ -21,6 +28,7 @@ export const Navbar = () => {
           alt="Icono de la app"
           width={70}
           height={70}
+          onClick={ onClick }
         />
         <Text color='white' h2>P</Text>
         <Text>okémon</Text>
