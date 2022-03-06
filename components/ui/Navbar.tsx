@@ -1,17 +1,11 @@
-import { Spacer, Text, useTheme } from "@nextui-org/react"
+import { Spacer, Text, useTheme, Link } from "@nextui-org/react"
+import NextLink from "next/link";
 import Image from 'next/image'
-import { useRouter } from 'next/router';
 
 
 export const Navbar = () => {
 
   const { theme } = useTheme();
-
-  const router = useRouter();
-
-  const onClick = () => {
-    router.push(`/`);
-  }
 
   return (
     <div style={{
@@ -28,15 +22,24 @@ export const Navbar = () => {
           alt="Icono de la app"
           width={70}
           height={70}
-          onClick={ onClick }
         />
-        <Text color='white' h2>P</Text>
-        <Text>okémon</Text>
+
+        <NextLink href="/" passHref>
+          <Link>
+            <Text color='white' h2>P</Text>
+            <Text>okémon</Text>
+          </Link>
+        </NextLink>
+        
 
         <Spacer css={{
           flex: "1",
         }} />
-        <Text color="white" margin=" 0px 20px">Favoritos</Text>
+        <NextLink href="/favorites" passHref>
+          <Link>
+            <Text color="white" margin=" 0px 20px">Favoritos</Text>
+          </Link>
+        </NextLink>
     </div>
   )
 }
