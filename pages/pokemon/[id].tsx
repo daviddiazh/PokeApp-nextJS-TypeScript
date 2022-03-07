@@ -6,6 +6,7 @@ import { Layout } from '../../components/layouts'
 import { Pokemon } from '../../interfaces/pokemon-full';
 import { localFavorites } from '../../utils';
 import confetti from 'canvas-confetti';
+import { getPokemonInfo } from '../../utils/getPokemonInfo';
 
 interface Props{
   pokemon: Pokemon;
@@ -13,7 +14,7 @@ interface Props{
 
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 
-  const [ isInFavorites, setIsInFavorites ] = useState( localFavorites.existInFavorites( pokemon.id ) )
+  const [ isInFavorites, setIsInFavorites ] = useState( localFavorites.existInFavorites( pokemon.id ) );
 
   const onToggleFavorites = () => {
     localFavorites.toggleFavorite(pokemon.id);
@@ -135,7 +136,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      pokemon: data
+      pokemon: await getPokemonInfo( id )
     }
   }
 }
